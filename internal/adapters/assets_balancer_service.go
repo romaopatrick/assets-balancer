@@ -197,6 +197,8 @@ func updateAsset(a *domain.Asset, input *boundaries.UpdateAssetInput) {
 
 func balance(group *domain.AssetsGroup) {
 	for _, a := range group.Assets {
-		a.FinalConrtibution = a.CalculateFinalContribution(group.ContributionTotal, group.CurrentTotal())
+		if a.Include {
+			a.FinalConrtibution = a.CalculateFinalContribution(group.ContributionTotal, group.CurrentTotal())
+		}
 	}
 }
