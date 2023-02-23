@@ -17,15 +17,21 @@ type (
 		CurrentValue        float64
 		ValueVariation      float64
 		PercentageFromTotal float64
-		FinalConrtibution   float64
+		FinalContribution   float64
 		Include             bool
 	}
 )
 
 func (a *Asset) CalculateValueVariation() float64 {
+	if a.PreviousValue == 0 {
+		return 0
+	}
 	return (a.CurrentValue - a.PreviousValue) / a.PreviousValue
 }
 func (a *Asset) CalculatePercentageFromTotal(currentTotal float64) float64 {
+	if currentTotal == 0 {
+		return 0
+	}
 	return a.CurrentValue / currentTotal
 }
 func (a *Asset) CalculateFinalContribution(contributionTotal, currentTotal float64) float64 {
@@ -55,7 +61,7 @@ func NewAsset(label string, score float32, previousV, currentV, currentT, contri
 	if asset.Include {
 		asset.ValueVariation = asset.CalculateValueVariation()
 		asset.PercentageFromTotal = asset.CalculatePercentageFromTotal(currentT)
-		asset.FinalConrtibution = asset.CalculateFinalContribution(contributionT, currentT)
+		asset.FinalContribution = asset.CalculateFinalContribution(contributionT, currentT)
 	}
 
 	return asset

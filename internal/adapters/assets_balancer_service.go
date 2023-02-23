@@ -111,12 +111,6 @@ func (abs *AssetsBalancerService) UpdateAsset(
 		return nil, errors.New(domain.ASSETS_GROUP_NOT_FOUND)
 	}
 
-	if slices.ContainsFunc(assetsGroup.Assets, func(a *domain.Asset) bool {
-		return a.Label == input.Label && a.Id != input.Id
-	}) {
-		return nil, errors.New(domain.LABEL_ALREADY_TAKEN)
-	}
-
 	idx := slices.IndexFunc(assetsGroup.Assets, func(a *domain.Asset) bool {
 		return a.Id == input.Id
 	})
@@ -180,15 +174,9 @@ func removeAsset(assets []*domain.Asset, idx int) []*domain.Asset {
 }
 
 func updateAsset(a *domain.Asset, input *boundaries.UpdateAssetInput) {
-	if input.CurrentValue != 0 {
-		a.CurrentValue = input.CurrentValue
-	}
-	if input.PreviousValue != 0 {
-		a.PreviousValue = input.PreviousValue
-	}
-	if input.Score != 0 {
-		a.Score = input.Score
-	}
+	a.CurrentValue = input.CurrentValue
+	a.PreviousValue = input.PreviousValue
+	a.Score = input.Score
 	a.Include = input.Include
 	if input.Label != "" {
 		a.Label = input.Label
@@ -198,7 +186,9 @@ func updateAsset(a *domain.Asset, input *boundaries.UpdateAssetInput) {
 func balance(group *domain.AssetsGroup) {
 	for _, a := range group.Assets {
 		if a.Include {
-			a.FinalConrtibution = a.CalculateFinalContribution(group.ContributionTotal, group.CurrentTotal())
+			a.PercentageFromTotal = a.CalculatePercentageFromTotal(group.CurrentTotal())
+			a.ValueVariation = a.CalculateValueVariation()
+			a.FinalContribution = a.CalculateFinalContribution(group.ContributionTotal, group.CurrentTotal())
 		}
 	}
 }
