@@ -93,15 +93,15 @@ func (h *AssetsBalancerHandler) HandleUpdateAsset(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
-func (h *AssetsBalancerHandler) HandleUpdateContributionTotal(c *gin.Context) {
-	input := &boundaries.UpdateContributionTotal{}
+func (h *AssetsBalancerHandler) HandleUpdateAssetsGroup(c *gin.Context) {
+	input := &boundaries.UpdateAssetsGroup{}
 
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, newErrorResult(err.Error()))
 		return
 	}
 
-	res, err := h.useCase.UpdateContributionTotal(c, input)
+	res, err := h.useCase.UpdateAssetsGroup(c, input)
 
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusPreconditionFailed, newErrorResult(err.Error()))

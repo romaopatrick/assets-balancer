@@ -76,8 +76,8 @@ func (abs *AssetsBalancerService) CreateAsset(
 	return assetsGroup, nil
 }
 
-func (abs *AssetsBalancerService) UpdateContributionTotal(
-	ctx context.Context, input *boundaries.UpdateContributionTotal) (*domain.AssetsGroup, error) {
+func (abs *AssetsBalancerService) UpdateAssetsGroup(
+	ctx context.Context, input *boundaries.UpdateAssetsGroup) (*domain.AssetsGroup, error) {
 	assetsGroup := abs.repository.GetFirst(ctx, map[string]interface{}{
 		"id": input.Id,
 	})
@@ -86,7 +86,12 @@ func (abs *AssetsBalancerService) UpdateContributionTotal(
 		return nil, errors.New(domain.ASSETS_GROUP_NOT_FOUND)
 	}
 
-	assetsGroup.ContributionTotal = input.ContributionTotal
+	if input.Label != "" {
+		assetsGroup.Label = input.Label
+	}
+	if input.ContributionTotal != 0 {
+		assetsGroup.ContributionTotal = input.ContributionTotal
+	}
 	balance(assetsGroup)
 
 	abs.repository.Replace(ctx, map[string]interface{}{

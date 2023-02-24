@@ -32,9 +32,10 @@ type (
 		CurrentValue  float64
 		Include       bool
 	}
-	UpdateContributionTotal struct {
+	UpdateAssetsGroup struct {
 		Id                uuid.UUID
 		ContributionTotal float64
+		Label             string
 	}
 	DeleteAssetInput struct {
 		Id      uuid.UUID

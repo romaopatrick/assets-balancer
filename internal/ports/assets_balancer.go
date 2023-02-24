@@ -11,7 +11,7 @@ type (
 		CreateAssetsGroup(ctx context.Context, input *boundaries.CreateAssetsGroupInput) (*domain.AssetsGroup, error)
 		CreateAsset(ctx context.Context, input *boundaries.CreateAssetForGroupInput) (*domain.AssetsGroup, error)
 		UpdateAsset(ctx context.Context, input *boundaries.UpdateAssetInput) (*domain.AssetsGroup, error)
-		UpdateContributionTotal(ctx context.Context, input *boundaries.UpdateContributionTotal) (*domain.AssetsGroup, error)
+		UpdateAssetsGroup(ctx context.Context, input *boundaries.UpdateAssetsGroup) (*domain.AssetsGroup, error)
 		DeleteAsset(ctx context.Context, input *boundaries.DeleteAssetInput) (*domain.AssetsGroup, error)
 		DeleteAssetsGroup(ctx context.Context, input *boundaries.DeleteAssetsGroupInput) error
 
