@@ -1,9 +1,10 @@
 package ports
 
 import (
-	"balancer/internal/boundaries"
-	"balancer/internal/domain"
 	"context"
+
+	"github.com/romaopatrick/assets-balancer/internal/boundaries"
+	"github.com/romaopatrick/assets-balancer/internal/domain"
 )
 
 type (

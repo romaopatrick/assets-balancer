@@ -1,10 +1,11 @@
 package main
 
 import (
-	"balancer/internal/adapters"
-	"balancer/internal/domain"
 	"context"
 	"os"
+
+	"github.com/romaopatrick/assets-balancer/internal/adapters"
+	"github.com/romaopatrick/assets-balancer/internal/domain"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"

@@ -1,8 +1,9 @@
 package adapters
 
 import (
-	"balancer/internal/ports"
 	"context"
+
+	"github.com/romaopatrick/assets-balancer/internal/ports"
 
 	"reflect"
 	"strings"

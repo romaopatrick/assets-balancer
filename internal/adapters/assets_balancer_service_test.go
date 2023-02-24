@@ -1,10 +1,11 @@
 package adapters
 
 import (
-	"balancer/internal/boundaries"
-	"balancer/internal/domain"
 	"context"
 	"testing"
+
+	"github.com/romaopatrick/assets-balancer/internal/boundaries"
+	"github.com/romaopatrick/assets-balancer/internal/domain"
 
 	"github.com/stretchr/testify/assert"
 )

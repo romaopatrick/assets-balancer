@@ -1,4 +1,4 @@
-module balancer
+module github.com/romaopatrick/assets-balancer
 
 go 1.19
 

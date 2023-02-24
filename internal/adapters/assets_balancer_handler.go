@@ -1,9 +1,10 @@
 package adapters
 
 import (
-	"balancer/internal/boundaries"
-	"balancer/internal/ports"
 	"net/http"
+
+	"github.com/romaopatrick/assets-balancer/internal/boundaries"
+	"github.com/romaopatrick/assets-balancer/internal/ports"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"

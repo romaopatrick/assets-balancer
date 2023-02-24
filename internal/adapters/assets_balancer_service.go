@@ -1,11 +1,12 @@
 package adapters
 
 import (
-	"balancer/internal/boundaries"
-	"balancer/internal/domain"
-	"balancer/internal/ports"
 	"context"
 	"errors"
+
+	"github.com/romaopatrick/assets-balancer/internal/boundaries"
+	"github.com/romaopatrick/assets-balancer/internal/domain"
+	"github.com/romaopatrick/assets-balancer/internal/ports"
 
 	"golang.org/x/exp/slices"
 )
