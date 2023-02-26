@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"os"
 
 	"github.com/romaopatrick/assets-balancer/internal/adapters"
 	"github.com/romaopatrick/assets-balancer/internal/domain"
@@ -49,9 +48,9 @@ func provideMongo(c *dig.Container) {
 
 func initializeViper() *viper.Viper {
 	v := viper.New()
-	v.AddConfigPath("../configs")
-	v.SetConfigType("json")
-	v.SetConfigName(os.Getenv("env"))
+	v.AddConfigPath("./")
+	v.AddConfigPath("/app/assets-balancer/cmd")
+	v.SetConfigFile("config.json")
 	if err := v.ReadInConfig(); err != nil {
 		panic(err)
 	}
